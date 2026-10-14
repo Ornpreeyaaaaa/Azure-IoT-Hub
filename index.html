@@ -101,6 +101,14 @@ input{width:100%;margin-top:6px;padding:12px 14px;border-radius:12px;border:0;fo
 .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
 .tag{padding:7px 16px;border-radius:12px;background:#0f2f73;border:1px solid var(--sky);font:600 15px Prompt}
 .warn{padding:18px 22px;border-radius:18px;background:#2f6bff22;border:1px solid var(--blue);margin-top:10px}
+.credits{margin:0 auto 34px;max-width:760px;padding-bottom:30px;border-bottom:1px solid #4fb8ff33}
+.credits h4{font-family:Prompt,"Noto Sans Thai",sans-serif;color:var(--sky);font-size:17px;margin:0 0 12px;font-weight:600;letter-spacing:.02em}
+.credits ul{list-style:none;margin:0 0 26px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:8px 24px;text-align:left}
+.credits li{display:flex;justify-content:space-between;gap:14px;padding:8px 14px;border-radius:10px;background:#0b2a6355;color:var(--ice);font-size:15px}
+.credits li span{color:var(--mist);font-variant-numeric:tabular-nums}
+.credits .adv{color:var(--ice);font-size:16px;margin:0 auto;max-width:none;text-align:center}
+.credits .adv small{display:block;color:var(--mist);font-size:14px;margin-bottom:4px}
+.foot-note{margin:0 auto;text-align:center}
 footer{padding:50px 6vw;text-align:center;color:var(--mist);background:#020a1c;font-size:15px}
 @media(max-width:760px){section{padding:84px 6vw}.flow{grid-template-columns:1fr 1fr;row-gap:30px}.flow::before,.flow::after{display:none}.pc{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;filter:none;transition:none}.hint::after,.tabp{animation:none}.card:hover{transform:none}}
@@ -136,7 +144,7 @@ section.light[data-bg]::before{-webkit-text-stroke-color:#2f6bff2e}
 <body>
 <div id="bar"></div>
 <nav aria-label="เมนูหลัก">
-<a href="#top" class="on">เริ่มต้น</a><a href="#what">ภาพรวม</a><a href="#features">ความสามารถ</a><a href="#region">ศูนย์ข้อมูล</a><a href="#price">ราคา</a><a href="#pros">ข้อดี-ข้อเสีย</a><a href="#cert">ใบรับรอง</a>
+<a href="#top" class="on">เริ่มต้น</a><a href="#what">ภาพรวม</a><a href="#features">ความสามารถ</a><a href="#region">ศูนย์ข้อมูล</a><a href="#price">ราคา</a><a href="#pros">ข้อดี-ข้อเสีย</a><a href="#credits">ผู้จัดทำ</a>
 </nav>
 
 <section id="top">
@@ -265,7 +273,15 @@ section.light[data-bg]::before{-webkit-text-stroke-color:#2f6bff2e}
 </div>
 </section>
 
-<footer>ข้อมูลราคา ศูนย์ข้อมูล และใบรับรอง อ้างอิง ณ เดือนตุลาคม 2569 อาจเปลี่ยนแปลงได้ ตรวจสอบกับเว็บไซต์ทางการของ Microsoft Azure ก่อนตัดสินใจ</footer>
+<footer id="credits">
+<div class="credits">
+<h4>จัดทำโดย</h4>
+<ul><li>นางสาว พัชริญา กัทลี<span>67010918004</span></li><li>นางสาว ณัฐณิชา ข่วงทิพย์<span>67010918031</span></li><li>นางสาว ศรีสุรีย์ ปาเต๋<span>67010918046</span></li><li>นางสาว เบญญาภา ทองนันตรี<span>67010918035</span></li><li>นางสาว พรนัชชา เอี่ยวลับ<span>67010918038</span></li><li>นางสาว อรปรียา พนมเริงศักดิ์<span>67010918061</span></li></ul>
+<h4>เสนอ</h4>
+<p class="adv">อาจารย์ผู้สอน อ.ดร.อิทธิพล เอี่ยมภูงา</p>
+</div>
+<p class="foot-note">ข้อมูลราคา ศูนย์ข้อมูล และใบรับรอง อ้างอิง ณ เดือนตุลาคม 2569 อาจเปลี่ยนแปลงได้ ตรวจสอบกับเว็บไซต์ทางการของ Microsoft Azure ก่อนตัดสินใจ</p>
+</footer>
 
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -277,13 +293,14 @@ $$('.rv,.st,.stat b').forEach(el=>io.observe(el));
 function count(el){if(el.done)return;el.done=1;const to=+el.dataset.count,d=+(el.dataset.dec||0),s=el.dataset.suf||'',t0=performance.now();
  const f=t=>{const p=reduce?1:Math.min(1,(t-t0)/1400),v=to*(1-Math.pow(1-p,3));el.textContent=v.toFixed(d)+s;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
 /* scroll driven */
-const secs=$$('section'),links=$$('nav a'),hero=$('#hero'),flow=$('#flow'),tl=$('#tl'),nodes=$$('.node');
+const secs=$$('section,footer'),links=$$('nav a'),hero=$('#hero'),flow=$('#flow'),tl=$('#tl'),nodes=$$('.node');
 function prog(el){const r=el.getBoundingClientRect(),h=innerHeight;return Math.max(0,Math.min(1,(h*.7-r.top)/(r.height)))}
 function onScroll(){
  const y=scrollY,max=document.documentElement.scrollHeight-innerHeight;
  $('#bar').style.width=(y/max*100)+'%';
  if(!reduce){hero.style.transform=`translateY(${y*.35}px)`;hero.style.opacity=Math.max(0,1-y/(innerHeight*.75))}
  let cur=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.4)cur=i});
+ if(y>=max-4)cur=secs.length-1;
  links.forEach((a,i)=>a.classList.toggle('on',i===cur));
  const p=prog(flow);flow.style.setProperty('--p',p);nodes.forEach((n,i)=>n.classList.toggle('act',p>=i/(nodes.length-1)-.02&&p>0.02));
  tl.style.setProperty('--p',prog(tl));
